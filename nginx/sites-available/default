@@ -1,10 +1,10 @@
 server {
   listen 443 ssl http2 proxy_protocol default_server;
-  ssl_certificate /etc/letsencrypt/live/m1x.app/fullchain.pem; # managed by Certbot
-  ssl_certificate_key /etc/letsencrypt/live/m1x.app/privkey.pem; # managed by Certbot
+  ssl_certificate /etc/ssl/live/m1x.app/fullchain.pem; # managed by Certbot
+  ssl_certificate_key /etc/ssl/live/m1x.app/privkey.pem; # managed by Certbot
 
-  access_log /var/log/nginx/default.access.log main;
-  error_log /var/log/nginx/default.error.log warn;
+  access_log /srv/log/default/access.log main;
+  error_log /srv/log/default/error.log warn;
 
   # Ensure the Real IPs are logged
   # https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/

@@ -3,6 +3,7 @@ version: '3'
 services:
   webserver:
     image: nginx:latest
+    container_name: nginx
     ports:
       - 80:80
       - 443:443
@@ -10,9 +11,12 @@ services:
     volumes:
       - ./nginx/:/etc/nginx/:ro
       - ./log/:/srv/log/:rw
-      - ./www/:/var/www/:ro
+      - ./www/:/var/www/html/:ro
+      - ./certbot/www/:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/ssl/:ro
   certbot:
     image: certbot/certbot:latest
+    container_name: certbot
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
