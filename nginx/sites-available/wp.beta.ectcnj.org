@@ -5,6 +5,9 @@ server {
     server_name wp.beta.ectcnj.org;
     server_tokens off;
 
+    access_log /srv/log/wp.beta.ectcnj.org/access.log main;
+    error_log /srv/log/wp.beta.ectcnj.org/error.log warn;
+
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
     }
