@@ -15,6 +15,11 @@ server {
     }
 }
 
+map $remote_addr $logging {
+    default 1;
+    ~^74.105.129.104$ 0;
+}
+
 server {
     listen 443 ssl http2 proxy_protocol;
     server_name wp.borg.ectcnj.org;
@@ -22,7 +27,7 @@ server {
     ssl_certificate /etc/ssl/live/wp.borg.ectcnj.org/fullchain.pem;
     ssl_certificate_key /etc/ssl/live/wp.borg.ectcnj.org/privkey.pem;
 
-    access_log /srv/log/wp.borg.ectcnj.org/access.log main;
+    access_log /srv/log/wp.borg.ectcnj.org/access.log main if=$logging;
     error_log /srv/log/wp.borg.ectcnj.org/error.log debug;
 
     location / {
