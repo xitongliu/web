@@ -1,3 +1,5 @@
 certbot/
 log/
 obsolete/
+www/local/
+www/*/local
